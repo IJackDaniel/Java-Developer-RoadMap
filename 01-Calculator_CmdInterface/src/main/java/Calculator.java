@@ -19,15 +19,20 @@ public class Calculator {
         switch (operator) {
             case "+":
                 System.out.println(firstNumber + secondNumber);
+                break;
             case "-":
                 System.out.println(firstNumber - secondNumber);
+                break;
             case "*":
                 System.out.println(firstNumber * secondNumber);
+                break;
             case "/":
                 if (secondNumber != 0) System.out.println(firstNumber / secondNumber);
                 else System.out.println("Деление на 0!");
+                break;
             default:
                 System.out.println("Неверная операция!");
+                break;
         };
         clear();
     }
