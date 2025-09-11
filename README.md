@@ -9,49 +9,33 @@
 ### Уровень 1: Основы синтаксиса и ООП
 | № | Название проекта | Технологии | Статус |
 | :-- | :--- | :--- | :--- |
-| 1 | [Простой калькулятор] | `Scanner`, условные операторы | ⬜️ |
-| 2 | [Угадай число](02-guess-the-number) | `Random`, циклы | ⬜️ |
-| 3 | [Симулятор банкомата](03-atm-simulator) | `ArrayList<>`, методы | ⬜️ |
+| 1 | Простой калькулятор | `Scanner`, условные операторы | ⬜️ |
+| 2 | Угадай число | `Random`, циклы | ⬜️ |
+| 3 | Симулятор банкомата | `ArrayList<>`, методы | ⬜️ |
 
 ### Уровень 2: Работа с файлами, основы GUI
 | № | Название проекта | Технологии | Статус |
 | :-- | :--- | :--- | :--- |
-| 4 | [Менеджер задач (CLI + File I/O)](04-task-manager-cli) | `FileReader`, `FileWriter`, `ArrayList<>` | ⬜️ |
-| 5 | [Графический калькулятор](05-gui-calculator) | **Swing** (`JFrame`, `JButton`), `ActionListener` | ⬜️ |
-| 6 | [Текстовый редактор](06-text-editor) | **Swing** (`JMenuBar`, `JFileChooser`) | ⬜️ |
+| 4 | Менеджер задач (CLI + File I/O) | `FileReader`, `FileWriter`, `ArrayList<>` | ⬜️ |
+| 5 | Графический калькулятор | **Swing** (`JFrame`, `JButton`), `ActionListener` | ⬜️ |
+| 6 | Текстовый редактор | **Swing** (`JMenuBar`, `JFileChooser`) | ⬜️ |
 
 ### Уровень 3: Базы данных (SQL)
 | № | Название проекта | Технологии | Статус |
 | :-- | :--- | :--- | :--- |
-| 7 | [Список контактов (GUI + DB)](07-address-book) | **Swing**, **SQLite**, **JDBC** | ⬜️ |
-| 8 | [Учет личных финансов](08-personal-finance) | **Swing**, **SQLite**, **JDBC**, `JOIN` | ⬜️ |
+| 7 | Список контактов (GUI + DB) | **Swing**, **SQLite**, **JDBC** | ⬜️ |
+| 8 | Учет личных финансов | **Swing**, **SQLite**, **JDBC**, `JOIN` | ⬜️ |
 
 ### Уровень 4: Многопоточность и сети (API)
 | № | Название проекта | Технологии | Статус |
 | :-- | :--- | :--- | :--- |
-| 9 | [Веб-скрапер](09-web-scraper) | **Jsoup** | ⬜️ |
-| 10 | [Приложение погоды](10-weather-app) | **Swing**, **Gson/Jackson**, **HTTP API**, `SwingWorker` | ⬜️ |
+| 9 | Веб-скрапер | **Jsoup** | ⬜️ |
+| 10 | Приложение погоды | **Swing**, **Gson/Jackson**, **HTTP API**, `SwingWorker` | ⬜️ |
 
 ### Уровень 5: Современный стек (Spring Boot)
 | № | Название проекта | Технологии | Статус |
 | :-- | :--- | :--- | :--- |
-| 11 | [REST API для контактов](11-contact-rest-api) | **Spring Boot**, **Spring Web** | ⬜️ |
-| 12 | [Full-stack приложение учета финансов](12-fullstack-finance-app) | **Spring Boot**, **Spring Data JPA**, **Thymeleaf** или **React** | ⬜️ |
+| 11 | REST API для контактов | **Spring Boot**, **Spring Web** | ⬜️ |
+| 12 | Full-stack приложение учета финансов | **Spring Boot**, **Spring Data JPA**, **Thymeleaf** или **React** | ⬜️ |
 
 ---
-
-## Структура репозитория
-java-developer-roadmap/
-│
-├── 01-calculator-cli/
-│ ├── src/
-│ └── README.md
-│
-├── 02-guess-the-number/
-│ ├── src/
-│ └── README.md
-│
-├── ...
-│
-├── LICENSE
-└── README.md (этот файл)
