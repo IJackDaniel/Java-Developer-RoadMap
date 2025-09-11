@@ -1,2 +1,60 @@
 public class Calculator {
+    private double firstNumber;
+    private double secondNumber;
+    private char operator;
+
+    public Calculator() {
+        firstNumber = 0;
+        secondNumber = 0;
+        operator = ' ';
+    }
+
+    private void clear() {
+        firstNumber = 0;
+        secondNumber = 0;
+        operator = ' ';
+    }
+
+    public void solve() {
+        switch (operator) {
+            case '+':
+                System.out.println(firstNumber + secondNumber);
+            case '-':
+                System.out.println(firstNumber - secondNumber);
+            case '*':
+                System.out.println(firstNumber * secondNumber);
+            case '/':
+                if (secondNumber != 0) System.out.println(firstNumber / secondNumber);
+                else System.out.println("Деление на 0!");
+            default:
+                System.out.println("Неверная операция!");
+        };
+        clear();
+    }
+
+    // Setters
+    public void setFirstNumber(double newValue) {
+        firstNumber = newValue;
+    }
+
+    public void setSecondNumber(double newValue) {
+        secondNumber = newValue;
+    }
+
+    public void setOperator(char newOperator) {
+        operator = newOperator;
+    }
+
+    // Getters
+    public double getFirstNumber() {
+        return firstNumber;
+    }
+
+    public double getSecondNumber() {
+        return secondNumber;
+    }
+
+    public char getOperator() {
+        return operator;
+    }
 }
