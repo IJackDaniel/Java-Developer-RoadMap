@@ -1,29 +1,29 @@
 public class Calculator {
     private double firstNumber;
     private double secondNumber;
-    private char operator;
+    private String operator;
 
     public Calculator() {
         firstNumber = 0;
         secondNumber = 0;
-        operator = ' ';
+        operator = "";
     }
 
     private void clear() {
         firstNumber = 0;
         secondNumber = 0;
-        operator = ' ';
+        operator = "";
     }
 
     public void solve() {
         switch (operator) {
-            case '+':
+            case "+":
                 System.out.println(firstNumber + secondNumber);
-            case '-':
+            case "-":
                 System.out.println(firstNumber - secondNumber);
-            case '*':
+            case "*":
                 System.out.println(firstNumber * secondNumber);
-            case '/':
+            case "/":
                 if (secondNumber != 0) System.out.println(firstNumber / secondNumber);
                 else System.out.println("Деление на 0!");
             default:
@@ -41,7 +41,7 @@ public class Calculator {
         secondNumber = newValue;
     }
 
-    public void setOperator(char newOperator) {
+    public void setOperator(String newOperator) {
         operator = newOperator;
     }
 
@@ -54,7 +54,7 @@ public class Calculator {
         return secondNumber;
     }
 
-    public char getOperator() {
+    public String  getOperator() {
         return operator;
     }
 }
