@@ -16,6 +16,6 @@ public class Main {
 
         System.out.println("\nРезультат:");
         calculator.solve();
-        System.out.println("\nРабота программы завершена!");
+        System.out.println("\nРабота программы завершена.");
     }
 }

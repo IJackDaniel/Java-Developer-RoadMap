@@ -28,10 +28,10 @@ public class Calculator {
                 break;
             case "/":
                 if (secondNumber != 0) System.out.println(firstNumber / secondNumber);
-                else System.out.println("Деление на 0!");
+                else System.out.println("Вычисление невозможно! Причина: деление на 0");
                 break;
             default:
-                System.out.println("Неверная операция!");
+                System.out.println("Вычисление невозможно! Причина: неверная операция");
                 break;
         };
         clear();
