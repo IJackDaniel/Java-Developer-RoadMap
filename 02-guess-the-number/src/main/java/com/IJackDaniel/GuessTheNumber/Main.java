@@ -21,14 +21,15 @@ public class Main {
         int userDifficultyChioce = 0;
         do {
             System.out.print("Ввод: ");
-            if (scanner.hasNextInt()) {
-                userDifficultyChioce = Integer.parseInt(scanner.nextLine());
-            } else {
-                scanner.next();
+            String input = scanner.nextLine();
+            try {
+                userDifficultyChioce = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                userDifficultyChioce = 0;
             }
         } while (userDifficultyChioce < 1 || userDifficultyChioce > 4);
 
-        int min = 1, max = 0;
+        int min = 1, max = 1;
         switch (userDifficultyChioce){
             case DIFFICULTY_EASY:
                 System.out.print("\nВыбранная сложность: Лёгкая");
@@ -56,11 +57,10 @@ public class Main {
         System.out.println("\nУгадайте число от " + min + " до " + max);
         do {
             System.out.print("Ввод: ");
-            if (scanner.hasNextInt()) {
+            try {
                 userNumber = Integer.parseInt(scanner.nextLine());
-            } else {
+            } catch (NumberFormatException e) {
                 System.out.println("Это не число!");
-                scanner.next();
                 continue;
             }
             numberOfAttempts++;
@@ -68,7 +68,7 @@ public class Main {
             if (userNumber == target) break;
             else if (userNumber > target) System.out.println("Загаданное число меньше");
             else System.out.println("Загаданное число больше");
-        } while (userNumber != target);
+        } while (true);
 
         System.out.println("\nПоздравляю! Вы угадали число " + target + "!");
         System.out.println("Вы угадали на " + numberOfAttempts + "-й попытке! Неплохой результат)");
