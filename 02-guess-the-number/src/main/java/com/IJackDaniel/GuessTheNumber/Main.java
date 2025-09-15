@@ -43,11 +43,17 @@ public class Main {
         int target = random.nextInt(min, max + 1);
 
         int numberOfAttempts = 0;
-        int userNumber;
+        int userNumber = -1;
         System.out.println("\nУгадайте число от " + min + " до " + max);
         do {
             System.out.print("Ввод: ");
-            userNumber = scanner.nextInt();
+            if (scanner.hasNextInt()) {
+                userNumber = scanner.nextInt();
+            } else {
+                System.out.println("Это не число!");
+                scanner.next();
+                continue;
+            }
             numberOfAttempts++;
 
             if (userNumber == target) continue;
