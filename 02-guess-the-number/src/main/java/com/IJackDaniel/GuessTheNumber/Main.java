@@ -6,31 +6,36 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+
         System.out.println("Выберите сложность: \n1 - лёгкая\n2 - средняя\n3 - сложная\n4 - экспертная");
-        System.out.print("Ввод: ");
-        int userDifficultyChioce = scanner.nextInt();
-        int min, max;
+        String input;
+        do {
+            System.out.print("Ввод: ");
+            input = scanner.next();
+        } while (!input.matches("[1-4]"));
+        int userDifficultyChioce = Integer.parseInt(input);
+
+        int min = 0, max;
         switch (userDifficultyChioce){
             case 1:
-                min = 0;
+                System.out.print("\nВыбранная сложность: Лёгкая");
                 max = 10;
                 break;
             case 2:
-                min = 0;
+                System.out.print("\nВыбранная сложность: Средняя");
                 max = 100;
                 break;
             case 3:
-                min = 0;
+                System.out.print("\nВыбранная сложность: Сложная");
                 max = 1000;
                 break;
             case 4:
-                min = 0;
+                System.out.print("\nВыбранная сложность: Экспертная");
                 max = 10000;
                 break;
             default:
-                min = 0;
-                max = 10;
-                System.out.println("Некорректный ввод! Выбрана средняя сложность");
+                max = 100;
+                System.out.println("\nНекорректный ввод! Выбрана средняя сложность");
                 break;
         }
 
@@ -51,6 +56,6 @@ public class Main {
         } while (userNumber != target);
 
         System.out.println("\nПоздравляю! Вы угадали число " + target + "!");
-        System.out.println("Вам понадобилось " + numberOfAttempts + " попыток! Неплохой результат)");
+        System.out.println("Вы угадали на " + numberOfAttempts + "-й попытке! Неплохой результат)");
     }
 }
