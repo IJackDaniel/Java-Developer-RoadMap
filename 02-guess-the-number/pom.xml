@@ -6,7 +6,7 @@
 
     <groupId>com.IJackDaniel</groupId>
     <artifactId>02-guess-the-number</artifactId>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
 
     <properties>
         <maven.compiler.source>24</maven.compiler.source>
