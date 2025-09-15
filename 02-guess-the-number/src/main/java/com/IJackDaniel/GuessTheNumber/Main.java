@@ -18,6 +18,7 @@ public class Main {
             Scanner scanner = new Scanner(System.in);
             System.out.printf("Ввод: ");
             userNumber = scanner.nextInt();
+            numberOfAttempts++;
 
             if (userNumber == target) continue;
             else if (userNumber > target) System.out.println("Загаданное число меньше");
@@ -25,5 +26,6 @@ public class Main {
         } while (userNumber != target);
 
         System.out.println("Поздравляю! Вы угадали число " + target + "!");
+        System.out.println("Вам понадобилось " + numberOfAttempts + " попыток! Неплохой результат)");
     }
 }
