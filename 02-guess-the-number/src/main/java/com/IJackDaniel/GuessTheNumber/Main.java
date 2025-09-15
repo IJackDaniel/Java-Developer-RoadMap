@@ -4,38 +4,47 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
+    static final int DIFFICULTY_EASY = 1;
+    static final int DIFFICULTY_NORMAL = 2;
+    static final int DIFFICULTY_HARD = 3;
+    static final int DIFFICULTY_EXPERT = 4;
+
+    static final int UPPER_BOUND_EASY = 10;
+    static final int UPPER_BOUND_NORMAL = 100;
+    static final int UPPER_BOUND_HARD = 1000;
+    static final int UPPER_BOUND_EXPERT = 10000;
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Выберите сложность: \n1 - лёгкая\n2 - средняя\n3 - сложная\n4 - экспертная");
-        String input;
+        int userDifficultyChioce = 0;
         do {
             System.out.print("Ввод: ");
-            input = scanner.next();
-        } while (!input.matches("[1-4]"));
-        int userDifficultyChioce = Integer.parseInt(input);
+            if (scanner.hasNextInt()) {
+                userDifficultyChioce = Integer.parseInt(scanner.nextLine());
+            } else {
+                scanner.next();
+            }
+        } while (userDifficultyChioce < 1 || userDifficultyChioce > 4);
 
-        int min = 0, max;
+        int min = 1, max = 0;
         switch (userDifficultyChioce){
-            case 1:
+            case DIFFICULTY_EASY:
                 System.out.print("\nВыбранная сложность: Лёгкая");
-                max = 10;
+                max = UPPER_BOUND_EASY;
                 break;
-            case 2:
+            case DIFFICULTY_NORMAL:
                 System.out.print("\nВыбранная сложность: Средняя");
-                max = 100;
+                max = UPPER_BOUND_NORMAL;
                 break;
-            case 3:
+            case DIFFICULTY_HARD:
                 System.out.print("\nВыбранная сложность: Сложная");
-                max = 1000;
+                max = UPPER_BOUND_HARD;
                 break;
-            case 4:
+            case DIFFICULTY_EXPERT:
                 System.out.print("\nВыбранная сложность: Экспертная");
-                max = 10000;
-                break;
-            default:
-                max = 100;
-                System.out.println("\nНекорректный ввод! Выбрана средняя сложность");
+                max = UPPER_BOUND_EXPERT;
                 break;
         }
 
@@ -48,7 +57,7 @@ public class Main {
         do {
             System.out.print("Ввод: ");
             if (scanner.hasNextInt()) {
-                userNumber = scanner.nextInt();
+                userNumber = Integer.parseInt(scanner.nextLine());
             } else {
                 System.out.println("Это не число!");
                 scanner.next();
@@ -56,7 +65,7 @@ public class Main {
             }
             numberOfAttempts++;
 
-            if (userNumber == target) continue;
+            if (userNumber == target) break;
             else if (userNumber > target) System.out.println("Загаданное число меньше");
             else System.out.println("Загаданное число больше");
         } while (userNumber != target);
