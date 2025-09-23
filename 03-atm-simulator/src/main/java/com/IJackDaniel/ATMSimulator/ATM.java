@@ -9,8 +9,8 @@ public class ATM {
 
         while (true) {
             double userBalance = bankAccount.getBalance();
-            printMenu();
 
+            printMenu();
             int userChoice = 0;
             do {
                 String newLine = scanner.nextLine();
@@ -19,45 +19,58 @@ public class ATM {
                 } catch (NumberFormatException e) {
                     userChoice = 0;
                 }
+                if (userChoice > 4 || userChoice < 1) System.out.print("Некорректный выбор!\nНовый выбор: ");
             } while (userChoice > 4 || userChoice < 1);
 
+            double amount = 0.0;
             switch (userChoice) {
                 case 1:
-                    System.out.println("1");
-                    // Ввод суммы для пополнения
+                    System.out.print("Введите сумму для пополнения: ");
+                    do {
+                        String newLine = scanner.nextLine();
+                        try {
+                            amount = Double.parseDouble(newLine);
+                        } catch (NumberFormatException e) {
+                            amount = 0.0;
+                        }
+                        if (amount <= 0.0) System.out.print("Некорректная сумма для пополнения! Новый ввод: ");
+                    } while (amount <= 0.0);
 
-                    // Проверка суммы
-
-                    // Пополнение баланса
-
-                    // Вывод об успешной операции
-
+                    bankAccount.setBalance(userBalance + amount);
+                    System.out.println("Успешное пополнение на " + amount + " Рублей");
                     break;
                 case 2:
-                    System.out.println("2");
-                    // Ввод суммы для вывода
+                    System.out.print("Введите сумму для снятия: ");
+                    do {
+                        String newLine = scanner.nextLine();
+                        try {
+                            amount = Double.parseDouble(newLine);
+                        } catch (NumberFormatException e) {
+                            amount = 0.0;
+                        }
+                        if (amount <= 0 || userBalance < amount) System.out.print("Некорректная сумма для снятия! Новый ввод: ");
+                    } while (amount <= 0 || userBalance < amount);
 
-                    // Проверка суммы
-
-                    // Снятие суммы
-
-                    // Вывод об успешной операции
-
+                    bankAccount.setBalance(userBalance - amount);
+                    System.out.println("Успешное cнятие " + amount + " Рублей");
                     break;
                 case 3:
-                    System.out.println("3");
-                    // Вывод баланса
+                    System.out.println("Ваш баланс: " + userBalance + " Рублей");
 
                     break;
                 case 4:
-                    System.out.println("4");
-                    // Выход из программы
+                    System.out.println("Выход пока не реализован");
                     break;
             }
         }
     }
 
     private static void printMenu() {
-        System.out.println("LoL");
+        System.out.print("\nМеню действий:" +
+                "\n1 - Пополнить счёт" +
+                "\n2 - Снять деньги" +
+                "\n3 - Вывести баланс" +
+                "\n4 - Завершение сессии" +
+                "\nВыбор: ");
     }
 }
