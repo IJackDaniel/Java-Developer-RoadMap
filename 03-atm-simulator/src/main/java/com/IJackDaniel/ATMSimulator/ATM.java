@@ -10,29 +10,30 @@ public class ATM {
     final static int EXIT_PROGRAM_CASE = 5;
 
     public static void main(String[] args) {
-        boolean flag = false;
         Scanner scanner = new Scanner(System.in);
         BankAccount bankAccount = new BankAccount();
 
-        int tryLogIn = 0;
-        while (tryLogIn < 3) {
+        int attemptsCount = 0;
+        while (attemptsCount < 3) {
             System.out.print("Введите логин: ");
             String login = scanner.nextLine();
             System.out.print("Введите пароль: ");
             String password = scanner.nextLine();
             if (bankAccount.checkLoginAndPassword(login, password)) {
-                flag = true;
                 break;
             } else {
                 System.out.println("Неправильный логин или пароль!");
-                tryLogIn++;
-                System.out.println("Осталось попыток входа: " + (4 - tryLogIn));
+                attemptsCount++;
+                System.out.println("Осталось попыток входа: " + (3 - attemptsCount));
             }
         }
-        if (tryLogIn == 3) System.out.println("\nВаша карта заблокирована!");
+        if (attemptsCount >= 3) {
+            System.out.println("\nВаша карта заблокирована!");
+            return;
+        }
         else System.out.println("\nУспешный вход!");
 
-        while (flag) {
+        while (true) {
             printMenu();
             int userChoice = 0;
             do {
@@ -63,7 +64,6 @@ public class ATM {
 
                     bankAccount.deposit(amount);
                     System.out.println("Успешное пополнение на " + amount + " Рублей");
-                    bankAccount.addOperation("Пополнение на " + amount + " Рублей. Баланс: " + bankAccount.getBalance());
                     break;
                 case WITHDRAW_MONEY_CASE:
                     do {
@@ -84,7 +84,6 @@ public class ATM {
 
                     bankAccount.withdraw(amount);
                     System.out.println("Успешное cнятие " + amount + " Рублей");
-                    bankAccount.addOperation("Снятие " + amount + " Рублей. Баланс: " + bankAccount.getBalance());
                     break;
                 case HISTORY_OF_OPERATIONS_CASE:
                     if (bankAccount.isHistoryEmpty()) System.out.println("История операций пуста");
@@ -99,11 +98,10 @@ public class ATM {
 
                     break;
                 case EXIT_PROGRAM_CASE:
-                    flag = false;
-                    break;
+                    System.out.println("\nРабота программы завершена!");
+                    return;
             }
         }
-        System.out.println("\nРабота программы завершена!");
     }
 
     private static void printMenu() {
