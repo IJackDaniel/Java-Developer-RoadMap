@@ -41,9 +41,14 @@ public class BankAccount {
         }
     }
 
-    // Add opetation to history
+    // Add operation to history
     public void addOperation(String operation) {
         this.historyOfOperations.add(operation);
+    }
+
+    // Check for history of operations
+    public boolean isHistoryEmpty() {
+        return this.historyOfOperations.isEmpty();
     }
 
     // Getters
