@@ -3,6 +3,11 @@ package com.IJackDaniel.ATMSimulator;
 import java.util.Scanner;
 
 public class ATM {
+    final static int DEPOSIT_MONEY_CASE = 1;
+    final static int WITHDRAW_MONEY_CASE = 2;
+    final static int CHECK_MONEY_CASE = 3;
+    final static int EXIT_PROGRAMM_CASE = 4;
+
     public static void main(String[] args) {
         BankAccount bankAccount = new BankAccount();
         Scanner scanner = new Scanner(System.in);
@@ -25,7 +30,7 @@ public class ATM {
 
             double amount = 0.0;
             switch (userChoice) {
-                case 1:
+                case DEPOSIT_MONEY_CASE:
                     System.out.print("Введите сумму для пополнения: ");
                     do {
                         String newLine = scanner.nextLine();
@@ -40,7 +45,7 @@ public class ATM {
                     bankAccount.setBalance(userBalance + amount);
                     System.out.println("Успешное пополнение на " + amount + " Рублей");
                     break;
-                case 2:
+                case WITHDRAW_MONEY_CASE:
                     System.out.print("Введите сумму для снятия: ");
                     do {
                         String newLine = scanner.nextLine();
@@ -55,11 +60,11 @@ public class ATM {
                     bankAccount.setBalance(userBalance - amount);
                     System.out.println("Успешное cнятие " + amount + " Рублей");
                     break;
-                case 3:
+                case CHECK_MONEY_CASE:
                     System.out.println("Ваш баланс: " + userBalance + " Рублей");
 
                     break;
-                case 4:
+                case EXIT_PROGRAMM_CASE:
                     flag = false;
                     break;
             }
