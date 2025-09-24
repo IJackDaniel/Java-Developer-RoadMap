@@ -7,7 +7,8 @@ public class ATM {
         BankAccount bankAccount = new BankAccount();
         Scanner scanner = new Scanner(System.in);
 
-        while (true) {
+        boolean flag = true;
+        while (flag) {
             double userBalance = bankAccount.getBalance();
 
             printMenu();
@@ -59,10 +60,11 @@ public class ATM {
 
                     break;
                 case 4:
-                    System.out.println("Выход пока не реализован");
+                    flag = false;
                     break;
             }
         }
+        System.out.println("\nРабота программы завершена!");
     }
 
     private static void printMenu() {
