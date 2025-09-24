@@ -1,20 +1,23 @@
 package com.IJackDaniel.ATMSimulator;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ATM {
     final static int DEPOSIT_MONEY_CASE = 1;
     final static int WITHDRAW_MONEY_CASE = 2;
     final static int CHECK_MONEY_CASE = 3;
-    final static int EXIT_PROGRAM_CASE = 4;
+    final static int HISTORY_OF_OPERATIONS_CASE = 4;
+    final static int EXIT_PROGRAM_CASE = 5;
 
     public static void main(String[] args) {
         boolean flag = false;
         Scanner scanner = new Scanner(System.in);
         BankAccount bankAccount = new BankAccount();
+        ArrayList<String> historyOfOperations = new ArrayList<>();
 
-        int tryLogIn = 1;
-        while (tryLogIn <= 3) {
+        int tryLogIn = 0;
+        while (tryLogIn < 3) {
             System.out.print("Введите логин: ");
             String login = scanner.nextLine();
             System.out.print("Введите пароль: ");
@@ -28,7 +31,7 @@ public class ATM {
                 System.out.println("Осталось попыток входа: " + (4 - tryLogIn));
             }
         }
-        if (tryLogIn == 4) System.out.println("\nВаша карта заблокирована!");
+        if (tryLogIn == 3) System.out.println("\nВаша карта заблокирована!");
         else System.out.println("\nУспешный вход!");
 
         while (flag) {
@@ -38,12 +41,12 @@ public class ATM {
                 String newLine = scanner.nextLine();
                 try {
                     userChoice = Integer.parseInt(newLine);
-                    if (userChoice > 4 || userChoice < 1) System.out.print("Некорректный выбор!\nНовый выбор: ");
+                    if (userChoice > 5 || userChoice < 1) System.out.print("Некорректный выбор!\nНовый выбор: ");
                 } catch (NumberFormatException e) {
                     System.out.println("Введено не число!");
                     userChoice = 0;
                 }
-            } while (userChoice > 4 || userChoice < 1);
+            } while (userChoice > 5 || userChoice < 1);
 
             double amount = 0.0;
             switch (userChoice) {
@@ -62,6 +65,7 @@ public class ATM {
 
                     bankAccount.deposit(amount);
                     System.out.println("Успешное пополнение на " + amount + " Рублей");
+                    historyOfOperations.add("Пополнение на " + amount + " Рублей. Баланс: " + bankAccount.getBalance());
                     break;
                 case WITHDRAW_MONEY_CASE:
                     do {
@@ -70,17 +74,26 @@ public class ATM {
                         try {
                             amount = Double.parseDouble(newLine);
                             if (amount <= 0.0) System.out.println("Введена некорректная сумма!");
+                            else if (amount > bankAccount.getBalance()) {
+                                System.out.println("На балансе недостаточно средств");
+                                amount = 0.0;
+                            }
                         } catch (NumberFormatException e) {
                             amount = 0.0;
                             System.out.println("Введено не число!");
                         }
                     } while (amount <= 0.0);
 
-                    boolean success = bankAccount.withdraw(amount);
-                    if (success) {
-                        System.out.println("Успешное cнятие " + amount + " Рублей");
-                    } else {
-                        System.out.println("Ошибка! Недостаточно средств!");
+                    bankAccount.withdraw(amount);
+                    System.out.println("Успешное cнятие " + amount + " Рублей");
+                    historyOfOperations.add("Снятие " + amount + " Рублей. Баланс: " + bankAccount.getBalance());
+                    break;
+                case HISTORY_OF_OPERATIONS_CASE:
+                    if (historyOfOperations.isEmpty()) System.out.println("История операций пуста");
+                    else {
+                        for (String operation : historyOfOperations) {
+                            System.out.println(operation);
+                        }
                     }
                     break;
                 case CHECK_MONEY_CASE:
@@ -100,7 +113,8 @@ public class ATM {
                 "\n1 - Пополнить счёт" +
                 "\n2 - Снять деньги" +
                 "\n3 - Вывести баланс" +
-                "\n4 - Завершение сессии" +
+                "\n4 - История операций" +
+                "\n5 - Завершение сессии" +
                 "\nВыбор: ");
     }
 }
