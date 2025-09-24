@@ -1,6 +1,5 @@
 package com.IJackDaniel.ATMSimulator;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ATM {
@@ -14,7 +13,6 @@ public class ATM {
         boolean flag = false;
         Scanner scanner = new Scanner(System.in);
         BankAccount bankAccount = new BankAccount();
-        ArrayList<String> historyOfOperations = new ArrayList<>();
 
         int tryLogIn = 0;
         while (tryLogIn < 3) {
@@ -65,7 +63,7 @@ public class ATM {
 
                     bankAccount.deposit(amount);
                     System.out.println("Успешное пополнение на " + amount + " Рублей");
-                    historyOfOperations.add("Пополнение на " + amount + " Рублей. Баланс: " + bankAccount.getBalance());
+                    bankAccount.addOperation("Пополнение на " + amount + " Рублей. Баланс: " + bankAccount.getBalance());
                     break;
                 case WITHDRAW_MONEY_CASE:
                     do {
@@ -86,12 +84,12 @@ public class ATM {
 
                     bankAccount.withdraw(amount);
                     System.out.println("Успешное cнятие " + amount + " Рублей");
-                    historyOfOperations.add("Снятие " + amount + " Рублей. Баланс: " + bankAccount.getBalance());
+                    bankAccount.addOperation("Снятие " + amount + " Рублей. Баланс: " + bankAccount.getBalance());
                     break;
                 case HISTORY_OF_OPERATIONS_CASE:
-                    if (historyOfOperations.isEmpty()) System.out.println("История операций пуста");
+                    if (bankAccount.isHistoryEmpty()) System.out.println("История операций пуста");
                     else {
-                        for (String operation : historyOfOperations) {
+                        for (String operation : bankAccount.getHistoryOfOperations()) {
                             System.out.println(operation);
                         }
                     }
