@@ -1,20 +1,25 @@
 package com.IJackDaniel.ATMSimulator;
 
+import java.util.ArrayList;
+
 public class BankAccount {
     private double balance;
     private String login;
     private String password;
+    private ArrayList<String> historyOfOperations;
 
     public BankAccount() {
-        balance = 100;
-        login = "User";
-        password = "12345";
+        this.balance = 100;
+        this.login = "User";
+        this.password = "12345";
+        this.historyOfOperations = new ArrayList<>();
     }
 
     public BankAccount(double balance, String login, String password) {
         this.balance = balance;
         this.login = login;
         this.password = password;
+        this.historyOfOperations = new ArrayList<>();
     }
 
     // Check login and password
@@ -22,20 +27,31 @@ public class BankAccount {
         return (login.equals(this.login) && password.equals(this.password));
     }
 
+    // Deposin money to balance
     public void deposit(double amount) {
         if (amount > 0) {
             this.balance += amount;
         }
     }
 
+    // Withdraw money from balance
     public void withdraw(double amount) {
         if (amount > 0 && amount <= this.balance) {
             this.balance -= amount;
         }
     }
 
+    // Add opetation to history
+    public void addOperation(String operation) {
+        this.historyOfOperations.add(operation);
+    }
+
     // Getters
     public double getBalance(){
-        return balance;
+        return this.balance;
+    }
+
+    public ArrayList<String> getHistoryOfOperations() {
+        return this.historyOfOperations;
     }
 }
