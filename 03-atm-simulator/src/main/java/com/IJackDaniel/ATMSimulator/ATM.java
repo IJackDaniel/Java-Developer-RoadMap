@@ -6,13 +6,30 @@ public class ATM {
     final static int DEPOSIT_MONEY_CASE = 1;
     final static int WITHDRAW_MONEY_CASE = 2;
     final static int CHECK_MONEY_CASE = 3;
-    final static int EXIT_PROGRAMM_CASE = 4;
+    final static int EXIT_PROGRAM_CASE = 4;
 
     public static void main(String[] args) {
-        BankAccount bankAccount = new BankAccount();
+        boolean flag = false;
         Scanner scanner = new Scanner(System.in);
+        BankAccount bankAccount = new BankAccount();
 
-        boolean flag = true;
+        int tryLogIn = 1;
+        while (tryLogIn <= 3 && !flag) {
+            System.out.print("Введите логин: ");
+            String login = scanner.nextLine();
+            System.out.print("Введите пароль: ");
+            String password = scanner.nextLine();
+            if (bankAccount.checkLoginAndPassword(login, password)) {
+                flag = true;
+            } else {
+                System.out.println("Неправильный логин или пароль!");
+                tryLogIn++;
+                System.out.println("Осталось попыток входа: " + (4 - tryLogIn));
+            }
+        }
+        if (tryLogIn == 4) System.out.println("\nВаша карта заблокирована!");
+        else System.out.println("\nУспешный вход!");
+
         while (flag) {
             double userBalance = bankAccount.getBalance();
 
@@ -64,7 +81,7 @@ public class ATM {
                     System.out.println("Ваш баланс: " + userBalance + " Рублей");
 
                     break;
-                case EXIT_PROGRAMM_CASE:
+                case EXIT_PROGRAM_CASE:
                     flag = false;
                     break;
             }
