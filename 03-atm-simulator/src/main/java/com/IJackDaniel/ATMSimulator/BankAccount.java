@@ -22,9 +22,18 @@ public class BankAccount {
         return (login.equals(this.login) && password.equals(this.password));
     }
 
-    // Setters
-    public void setBalance(double newBalance) {
-        balance = newBalance;
+    public void deposit(double amount) {
+        if (amount > 0) {
+            this.balance += amount;
+        }
+    }
+
+    public boolean withdraw(double amount) {
+        if (amount > 0 && amount <= this.balance) {
+            this.balance -= amount;
+            return true;
+        }
+        return false;
     }
 
     // Getters

@@ -14,13 +14,14 @@ public class ATM {
         BankAccount bankAccount = new BankAccount();
 
         int tryLogIn = 1;
-        while (tryLogIn <= 3 && !flag) {
+        while (tryLogIn <= 3) {
             System.out.print("Введите логин: ");
             String login = scanner.nextLine();
             System.out.print("Введите пароль: ");
             String password = scanner.nextLine();
             if (bankAccount.checkLoginAndPassword(login, password)) {
                 flag = true;
+                break;
             } else {
                 System.out.println("Неправильный логин или пароль!");
                 tryLogIn++;
@@ -31,54 +32,59 @@ public class ATM {
         else System.out.println("\nУспешный вход!");
 
         while (flag) {
-            double userBalance = bankAccount.getBalance();
-
             printMenu();
             int userChoice = 0;
             do {
                 String newLine = scanner.nextLine();
                 try {
                     userChoice = Integer.parseInt(newLine);
+                    if (userChoice > 4 || userChoice < 1) System.out.print("Некорректный выбор!\nНовый выбор: ");
                 } catch (NumberFormatException e) {
+                    System.out.println("Введено не число!");
                     userChoice = 0;
                 }
-                if (userChoice > 4 || userChoice < 1) System.out.print("Некорректный выбор!\nНовый выбор: ");
             } while (userChoice > 4 || userChoice < 1);
 
             double amount = 0.0;
             switch (userChoice) {
                 case DEPOSIT_MONEY_CASE:
-                    System.out.print("Введите сумму для пополнения: ");
                     do {
+                        System.out.print("Введите сумму для пополнения: ");
                         String newLine = scanner.nextLine();
                         try {
                             amount = Double.parseDouble(newLine);
+                            if (amount <= 0.0) System.out.println("Введена некорректная сумма!");
                         } catch (NumberFormatException e) {
                             amount = 0.0;
+                            System.out.println("Введено не число!");
                         }
-                        if (amount <= 0.0) System.out.print("Некорректная сумма для пополнения! Новый ввод: ");
                     } while (amount <= 0.0);
 
-                    bankAccount.setBalance(userBalance + amount);
+                    bankAccount.deposit(amount);
                     System.out.println("Успешное пополнение на " + amount + " Рублей");
                     break;
                 case WITHDRAW_MONEY_CASE:
-                    System.out.print("Введите сумму для снятия: ");
                     do {
+                        System.out.print("Введите сумму для снятия: ");
                         String newLine = scanner.nextLine();
                         try {
                             amount = Double.parseDouble(newLine);
+                            if (amount <= 0.0) System.out.println("Введена некорректная сумма!");
                         } catch (NumberFormatException e) {
                             amount = 0.0;
+                            System.out.println("Введено не число!");
                         }
-                        if (amount <= 0 || userBalance < amount) System.out.print("Некорректная сумма для снятия! Новый ввод: ");
-                    } while (amount <= 0 || userBalance < amount);
+                    } while (amount <= 0.0);
 
-                    bankAccount.setBalance(userBalance - amount);
-                    System.out.println("Успешное cнятие " + amount + " Рублей");
+                    boolean success = bankAccount.withdraw(amount);
+                    if (success) {
+                        System.out.println("Успешное cнятие " + amount + " Рублей");
+                    } else {
+                        System.out.println("Ошибка! Недостаточно средств!");
+                    }
                     break;
                 case CHECK_MONEY_CASE:
-                    System.out.println("Ваш баланс: " + userBalance + " Рублей");
+                    System.out.println("Ваш баланс: " + bankAccount.getBalance() + " Рублей");
 
                     break;
                 case EXIT_PROGRAM_CASE:
