@@ -5,10 +5,10 @@ public class Task {
     private String description;
     private boolean status;
 
-    public Task(int id, String description) {
+    public Task(int id, String description, boolean status) {
         this.id = id;
         this.description = description;
-        this.status = false;
+        this.status = status;
     }
 
     // Getters
