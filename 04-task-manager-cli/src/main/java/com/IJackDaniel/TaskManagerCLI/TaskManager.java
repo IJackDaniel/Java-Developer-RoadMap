@@ -1,8 +1,6 @@
 package com.IJackDaniel.TaskManagerCLI;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class TaskManager {
@@ -23,7 +21,7 @@ public class TaskManager {
 
                 int id = Integer.parseInt(parseString[0]);
                 String description = parseString[1];
-                boolean status = Boolean.getBoolean(parseString[2]);
+                boolean status = Boolean.parseBoolean(parseString[2]);
 
                 Task readedTask = new Task(id, description, status);
                 taskArrayList.add(readedTask);
@@ -36,7 +34,14 @@ public class TaskManager {
 
     // Function for write data from file.txt
     public void writeToFile(){
-
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("data\\data.txt"))){
+            for (Task task : taskArrayList) {
+                writer.write(task.toWriteInFile());
+                writer.newLine();
+            }
+        } catch (IOException exception) {
+            System.out.println(exception.getMessage());
+        }
     }
 
     // Add task to array list

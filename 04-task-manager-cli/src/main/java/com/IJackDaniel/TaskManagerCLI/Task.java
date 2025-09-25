@@ -21,6 +21,10 @@ public class Task {
         this.status = status;
     }
 
+    public String toWriteInFile() {
+        return this.id + "|" + this.description + "|" + this.status;
+    }
+
     @Override
     public String toString() {
         String statusString = this.status? "[X] " : "[ ] ";
