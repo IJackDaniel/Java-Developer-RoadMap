@@ -70,7 +70,7 @@ public class Main {
                         }
                         System.out.print(".");
                     }
-                    System.out.println("Программа заверена!");
+                    System.out.println("\nПрограмма заверена!");
                     return;
 
             }
