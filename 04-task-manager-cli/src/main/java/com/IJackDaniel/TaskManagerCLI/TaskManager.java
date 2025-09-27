@@ -83,11 +83,11 @@ public class TaskManager {
             Task task = iterator.next();
             if (task.getId() == id) {
                 iterator.remove();
+                if (maxId  == id) {
+                    maxId = getMaxId();
+                }
                 return "Задача удалена!";
             }
-        }
-        if (maxId == id) {
-            maxId = getMaxId();
         }
         return "Ошибка! Задачи с данным ID не существует!";
     }
@@ -105,7 +105,7 @@ public class TaskManager {
 
     // Get max id
     public int getMaxId() {
-        int max = -1;
+        int max = 0;
         for (Task task : tasks) {
             max = Math.max(max, task.getId());
         }

@@ -1,5 +1,6 @@
 package com.IJackDaniel.TaskManagerCLI;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -12,6 +13,8 @@ public class Main {
     public static void main(String[] args) {
         TaskManager taskManager = new TaskManager();
         Scanner scanner = new Scanner(System.in);
+
+        System.out.println(taskManager.readFromFile());
 
         // Main loop
         while (true) {
@@ -29,10 +32,52 @@ public class Main {
                     System.out.println("Введите число!");
                 }
             } while (userChoice < 1 || userChoice > 5);
+
+            int id = 0;
+            switch (userChoice) {
+                case ADD_NEW_TASK_CASE:
+                    System.out.print("Название задачи: ");
+                    String description = scanner.nextLine();
+                    System.out.println(taskManager.addTask(description));
+                    break;
+                case COMPLETE_TASK_CASE:
+                    id = readTaskId(scanner);
+                    System.out.println(taskManager.completeTask(id));
+                    break;
+                case DELETE_TASK_CASE:
+                    id = readTaskId(scanner);
+                    System.out.println(taskManager.deleteTask(id));
+                    break;
+                case SHOW_ALL_TASKS_CASE:
+                    ArrayList<Task> tasks = taskManager.getAllTasks();
+                    if (tasks.isEmpty()) {
+                        System.out.println("Список задач пуст!");
+                    }
+                    else {
+                        for (Task task : tasks) {
+                            System.out.println(task.toString());
+                        }
+                    }
+                    break;
+                case EXIT_PROGRAM_CASE:
+                    System.out.println(taskManager.writeToFile());
+                    System.out.print("Выход из программы");
+                    for (int i = 0; i < 3; i++) {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException exception) {
+                            Thread.currentThread().interrupt();
+                        }
+                        System.out.print(".");
+                    }
+                    System.out.println("Программа заверена!");
+                    return;
+
+            }
         }
     }
 
-    public static void printMenu() {
+    private static void printMenu() {
         System.out.println("\n===========Меню===========" +
                 "\n|1-Добавить новую задачу |" +
                 "\n|2-Завершить задачу      |" +
@@ -40,5 +85,14 @@ public class Main {
                 "\n|4-Показать все задачи   |" +
                 "\n|5-Выход из программы    |" +
                 "\n==========================");
+    }
+
+    private static int readTaskId(Scanner scanner) {
+        System.out.print("ID задачи: ");
+        try {
+            return Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException exception) {
+            return -1;
+        }
     }
 }
