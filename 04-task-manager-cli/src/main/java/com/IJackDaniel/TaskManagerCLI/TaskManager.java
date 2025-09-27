@@ -66,37 +66,41 @@ public class TaskManager {
     }
 
     // Add task to array list
-    public void addTask(String description) {
+    public String addTask(String description) {
         if (!description.isEmpty()) {
             Task newTask = new Task(maxId + 1, description, false);
             maxId++;
             tasks.add(newTask);
+            return "Задача добавлена в список!";
         }
+        return "Ошибка! Отсутствует название!";
     }
 
     // Delete task from array list by ID
-    public void deleteTask(int id) {
+    public String deleteTask(int id) {
         Iterator<Task> iterator = tasks.iterator();
         while (iterator.hasNext()) {
             Task task = iterator.next();
             if (task.getId() == id) {
                 iterator.remove();
-                break;
+                return "Задача удалена!";
             }
         }
         if (maxId == id) {
             maxId = getMaxId();
         }
+        return "Ошибка! Задачи с данным ID не существует!";
     }
 
     // Complete task
-    public void completeTask(int id) {
+    public String completeTask(int id) {
         for (Task task : tasks) {
             if (task.getId() == id) {
                 task.setStatus(true);
-                break;
+                return "Задача выполнена!";
             }
         }
+        return "Ошибка! Задачи с данным ID не существует!";
     }
 
     // Get max id
