@@ -78,3 +78,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### for project №4 ###
+04-task-manager-cli/data/
