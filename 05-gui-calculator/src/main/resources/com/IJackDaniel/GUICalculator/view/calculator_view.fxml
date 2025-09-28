@@ -21,7 +21,7 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <TextField fx:id="displayField" alignment="CENTER_RIGHT" prefHeight="60.0" GridPane.columnSpan="4" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+      <TextField fx:id="displayField" alignment="CENTER_RIGHT" editable="false" prefHeight="60.0" GridPane.columnSpan="4" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
          <font>
             <Font name="Bodoni Bd BT Bold" size="24.0" />
          </font></TextField>
@@ -73,9 +73,9 @@
          <font>
             <Font name="Bodoni Bd BT Bold" size="36.0" />
          </font></Button>
-      <Button layoutX="70.0" layoutY="115.0" mnemonicParsing="false" onAction="#onClearClick" prefHeight="80.0" prefWidth="80.0" text="С" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+      <Button fx:id="buttonClear" layoutX="70.0" layoutY="115.0" mnemonicParsing="false" onAction="#onClearClick" prefHeight="80.0" prefWidth="80.0" text="С" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
          <font>
-            <Font name="Bodoni Bd BT Bold" size="36.0" />
+            <Font name="Bodoni Bd BT Bold" size="32.0" />
          </font></Button>
       <Button layoutX="140.0" layoutY="115.0" mnemonicParsing="false" onAction="#onDigitButtonClick" prefHeight="80.0" prefWidth="80.0" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
          <font>
