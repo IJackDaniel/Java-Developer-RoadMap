@@ -1,10 +1,13 @@
 package com.IJackDaniel.GUICalculator.controller;
 
+import com.IJackDaniel.GUICalculator.model.CalculatorModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class CalculatorController {
+    CalculatorModel model = new CalculatorModel();
+
     @FXML
     private TextField displayField;
 
@@ -14,18 +17,21 @@ public class CalculatorController {
 
     @FXML
     public void initialize() {
-        displayField.setText("0");
+        displayField.setText("Введите число");
         System.out.println("CalculatorController инициализирован!");
     }
 
     @FXML
     private void onDigitButtonClick(javafx.event.ActionEvent event) {
-        System.out.println("Нажата кнопочка с цифоркой");
+        Button clickedButton = (Button) event.getSource();
+        displayField.setText("Это цифорка " + clickedButton.getText());
+        model.reset();
     }
 
     @FXML
     private void onOperatorButtonClick(javafx.event.ActionEvent event) {
-        System.out.println("Нажата кнопочка с опирацией");
+        Button clickedButton = (Button) event.getSource();
+        displayField.setText("Это функция " + clickedButton.getText());
     }
 
     @FXML
@@ -35,6 +41,11 @@ public class CalculatorController {
 
     @FXML
     private void onClearClick() {
-        System.out.println("Решил что в два раза мощнее таноса и очистил ВСЮ вселенную");
+        model.reset();
+        updateDisplay();
+    }
+
+    private void updateDisplay() {
+        displayField.setText(String.valueOf(model.getCurrent()));
     }
 }
