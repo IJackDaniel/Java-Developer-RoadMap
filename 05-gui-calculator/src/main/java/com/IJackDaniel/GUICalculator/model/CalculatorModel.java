@@ -5,6 +5,7 @@ public class CalculatorModel {
     private double current;
     private String operation;
     private final int accuracy = 5;
+    private boolean shouldResetOnNextInput;
 
     public CalculatorModel() {
         reset();
@@ -13,6 +14,11 @@ public class CalculatorModel {
     public void reset() {
         this.accumulator = 0.0;
         this.current = 0.0;
+        this.operation = "";
+        shouldResetOnNextInput = false;
+    }
+
+    private void resetOperation() {
         this.operation = "";
     }
 
@@ -39,6 +45,7 @@ public class CalculatorModel {
                 division();
                 break;
         }
+        shouldResetOnNextInput = true;
     }
 
     private double round(double value){
@@ -48,25 +55,25 @@ public class CalculatorModel {
 
     public void addition() {
         double result = round(this.accumulator + this.current);
-        reset();
+        resetOperation();
         this.current = result;
     }
 
     public void subtraction() {
         double result = round(this.accumulator - this.current);
-        reset();
+        resetOperation();
         this.current = result;
     }
 
     public void multiplication() {
         double result = round(this.accumulator * this.current);
-        reset();
+        resetOperation();
         this.current = result;
     }
 
     public void division() {
         double result = round(this.accumulator / this.current);
-        reset();
+        resetOperation();
         this.current = result;
     }
 
@@ -89,10 +96,19 @@ public class CalculatorModel {
 
     // Setters
     public void inputDigit(int digit) {
-        this.current = this.current * 10 + digit;
+        if (shouldResetOnNextInput) {
+            shouldResetOnNextInput = false;
+            reset();
+            this.current = digit;
+        } else {
+            this.current = this.current * 10 + digit;
+        }
+
     }
 
     public void inputOperation(String operation) {
+        if (!operation.isEmpty()) evaluate();
+        if (shouldResetOnNextInput) shouldResetOnNextInput = false;
         this.operation = operation;
         shiftValue();
     }
