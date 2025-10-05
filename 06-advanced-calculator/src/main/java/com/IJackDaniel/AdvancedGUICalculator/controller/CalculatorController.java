@@ -39,12 +39,16 @@ public class CalculatorController {
     public void onDigitButtonClick(ActionEvent event) {
         Button clickedButton = (Button) event.getSource();
         int inputDigit = Integer.parseInt(clickedButton.getText());
+        model.inputDigit(inputDigit);
+        updateDisplay();
     }
 
     @FXML
     public void onOperationButtonClick(ActionEvent event) {
         Button clickedButton = (Button) event.getSource();
         String operation = clickedButton.getText();
+        model.inputOperation(operation);
+        updateDisplay();
     }
 
     @FXML
@@ -54,11 +58,15 @@ public class CalculatorController {
 
     @FXML
     public void onClearClick() {
-
+        model.reset();
     }
 
     @FXML
     public void onEqualsClick() {
+        model.evaluate();
+    }
 
+    private void updateDisplay() {
+        resultLabel.setText(String.valueOf(model.getCurrent()));
     }
 }
