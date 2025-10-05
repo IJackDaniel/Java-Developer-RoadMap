@@ -37,102 +37,102 @@
                         <Font name="Bodoni Bd BT Bold" size="36.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="button2" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="2" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                  <Button fx:id="button2" mnemonicParsing="false" onAction="#onDigitButtonClick" prefHeight="80.0" prefWidth="80.0" text="2" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                      <font>
                         <Font name="Bodoni Bd BT Bold" size="36.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button3" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="3" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                  <Button fx:id="button3" mnemonicParsing="false" onAction="#onDigitButtonClick" prefHeight="80.0" prefWidth="80.0" text="3" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                      <font>
                         <Font name="Bodoni Bd BT Bold" size="36.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonPlus" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="+" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                  <Button fx:id="buttonPlus" mnemonicParsing="false" onAction="#onOperationButtonClick" prefHeight="80.0" prefWidth="80.0" text="+" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                      <font>
                         <Font name="Bodoni Bd BT Bold" size="36.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button1" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="1" textAlignment="CENTER" GridPane.rowIndex="1">
+                  <Button fx:id="button1" mnemonicParsing="false" onAction="#onDigitButtonClick" prefHeight="80.0" prefWidth="80.0" text="1" textAlignment="CENTER" GridPane.rowIndex="1">
                      <font>
                         <Font name="Bodoni Bd BT Bold" size="36.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button7" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="7" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                  <Button fx:id="button7" mnemonicParsing="false" onAction="#onDigitButtonClick" prefHeight="80.0" prefWidth="80.0" text="7" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                      <font>
                         <Font name="Bodoni Bd BT Bold" size="36.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button8" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="8" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                  <Button fx:id="button8" mnemonicParsing="false" onAction="#onDigitButtonClick" prefHeight="80.0" prefWidth="80.0" text="8" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                      <font>
                         <Font name="Bodoni Bd BT Bold" size="36.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button9" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="9" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                  <Button fx:id="button9" mnemonicParsing="false" onAction="#onDigitButtonClick" prefHeight="80.0" prefWidth="80.0" text="9" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                      <font>
                         <Font name="Bodoni Bd BT Bold" size="36.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonMultiply" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="*" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                  <Button fx:id="buttonMultiply" mnemonicParsing="false" onAction="#onOperationButtonClick" prefHeight="80.0" prefWidth="80.0" text="*" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                      <font>
                         <Font name="Bodoni Bd BT Bold" size="36.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button4" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="4" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                  <Button fx:id="button4" mnemonicParsing="false" onAction="#onDigitButtonClick" prefHeight="80.0" prefWidth="80.0" text="4" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                      <font>
                         <Font name="Bodoni Bd BT Bold" size="36.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button5" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="5" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                  <Button fx:id="button5" mnemonicParsing="false" onAction="#onDigitButtonClick" prefHeight="80.0" prefWidth="80.0" text="5" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                      <font>
                         <Font name="Bodoni Bd BT Bold" size="36.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button6" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="6" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                  <Button fx:id="button6" mnemonicParsing="false" onAction="#onDigitButtonClick" prefHeight="80.0" prefWidth="80.0" text="6" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                      <font>
                         <Font name="Bodoni Bd BT Bold" size="36.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonMinus" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="-" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                  <Button fx:id="buttonMinus" mnemonicParsing="false" onAction="#onOperationButtonClick" prefHeight="80.0" prefWidth="80.0" text="-" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                      <font>
                         <Font name="Bodoni Bd BT Bold" size="36.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonComma" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="," textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                  <Button fx:id="buttonComma" mnemonicParsing="false" onAction="#onCommaClick" prefHeight="80.0" prefWidth="80.0" text="," textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                      <font>
                         <Font name="Bodoni Bd BT Bold" size="36.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                  <Button fx:id="button0" mnemonicParsing="false" onAction="#onDigitButtonClick" prefHeight="80.0" prefWidth="80.0" text="0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                      <font>
                         <Font name="Bodoni Bd BT Bold" size="36.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonEquals" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="=" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                  <Button fx:id="buttonEquals" mnemonicParsing="false" onAction="#onEqualsClick" prefHeight="80.0" prefWidth="80.0" text="=" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                      <font>
                         <Font name="Bodoni Bd BT Bold" size="36.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonDivide" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="/" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                  <Button fx:id="buttonDivide" mnemonicParsing="false" onAction="#onOperationButtonClick" prefHeight="80.0" prefWidth="80.0" text="/" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                      <font>
                         <Font name="Bodoni Bd BT Bold" size="36.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonExponentiationOfN" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="xⁿ" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="buttonExponentiationOfN" mnemonicParsing="false" onAction="#onOperationButtonClick" prefHeight="80.0" prefWidth="80.0" text="xⁿ" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font name="Bodoni Bd BT Bold" size="36.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonRootOfDegreeN" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="ⁿ√x" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                  <Button fx:id="buttonRootOfDegreeN" mnemonicParsing="false" onAction="#onOperationButtonClick" prefHeight="80.0" prefWidth="80.0" text="ⁿ√x" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                      <font>
                         <Font name="Bodoni Bd BT Bold" size="26.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonInverse" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="1/x" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                  <Button fx:id="buttonInverse" mnemonicParsing="false" onAction="#onInverseClick" prefHeight="80.0" prefWidth="80.0" text="1/x" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <font>
                         <Font name="Bodoni Bd BT Bold" size="26.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonClear" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="c" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                  <Button fx:id="buttonClear" mnemonicParsing="false" onAction="#onClearClick" prefHeight="80.0" prefWidth="80.0" text="c" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                      <font>
                         <Font name="Bodoni Bd BT Bold" size="36.0" />
                      </font>

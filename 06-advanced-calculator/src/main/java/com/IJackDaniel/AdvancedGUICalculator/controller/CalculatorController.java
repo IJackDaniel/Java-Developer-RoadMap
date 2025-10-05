@@ -5,8 +5,7 @@ import javafx.fxml.FXML;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-
-import java.awt.event.ActionEvent;
+import javafx.event.ActionEvent;
 
 public class CalculatorController {
     CalculatorModel model;
@@ -52,21 +51,35 @@ public class CalculatorController {
     }
 
     @FXML
-    public void onCommaClick() {
+    public void onInverseClick() {
+        model.inverse();
+        updateDisplay();
+    }
 
+    @FXML
+    public void onCommaClick() {
+        updateDisplay();
     }
 
     @FXML
     public void onClearClick() {
         model.reset();
+        updateDisplay();
     }
 
     @FXML
     public void onEqualsClick() {
         model.evaluate();
+        updateDisplay();
     }
 
     private void updateDisplay() {
-        resultLabel.setText(String.valueOf(model.getCurrent()));
+        double showDigit = model.getCurrent();
+        if (showDigit == (int)showDigit) {
+            resultLabel.setText(String.valueOf((int)showDigit));
+        } else {
+            resultLabel.setText(String.valueOf(showDigit));
+        }
+
     }
 }

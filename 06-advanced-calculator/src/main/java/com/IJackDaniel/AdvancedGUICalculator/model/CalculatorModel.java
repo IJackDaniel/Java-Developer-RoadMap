@@ -4,7 +4,7 @@ public class CalculatorModel {
     private double accumulator;
     private double current;
     private String operation;
-    private final int accuracy = 5;
+    private final int accuracy = 9;
     private boolean shouldResetOnNextInput;
 
     public CalculatorModel() {
@@ -44,6 +44,12 @@ public class CalculatorModel {
                 if (divisionByZero()) throw new ArithmeticException("Деление на ноль!");
                 division();
                 break;
+            case "xⁿ":
+                exponentiationOfN();
+                break;
+            case "ⁿ√x":
+                rootOfDegreeN();
+                break;
         }
         shouldResetOnNextInput = true;
     }
@@ -73,6 +79,24 @@ public class CalculatorModel {
 
     public void division() {
         double result = round(this.accumulator / this.current);
+        resetOperation();
+        this.current = result;
+    }
+
+    public void exponentiationOfN() {
+        double result = round(Math.pow(this.accumulator, this.current));
+        resetOperation();
+        this.current = result;
+    }
+
+    public void rootOfDegreeN() {
+        double result = round(Math.pow(this.accumulator, 1/this.current));
+        resetOperation();
+        this.current = result;
+    }
+
+    public void inverse() {
+        double result = round(1/this.current);
         resetOperation();
         this.current = result;
     }
