@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<TabPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17.0.12"  xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.IJackDaniel.AdvancedGUICalculator.controller.CalculatorController">
+<TabPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.IJackDaniel.AdvancedGUICalculator.controller.CalculatorController">
    <tabs>
       <Tab closable="false" text="Калькулятор">
          <content>
@@ -32,7 +32,7 @@
                   <RowConstraints maxHeight="269.5" minHeight="10.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField fx:id="resultLabel" alignment="CENTER_RIGHT" prefHeight="20.0" GridPane.columnSpan="5" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                  <TextField fx:id="resultLabel" alignment="CENTER_RIGHT" editable="false" prefHeight="20.0" GridPane.columnSpan="5" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                      <font>
                         <Font name="Bodoni Bd BT Bold" size="36.0" />
                      </font>
@@ -117,7 +117,7 @@
                         <Font name="Bodoni Bd BT Bold" size="36.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonExponentationOfN" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="xⁿ" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <Button fx:id="buttonExponentiationOfN" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="xⁿ" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font name="Bodoni Bd BT Bold" size="36.0" />
                      </font>
@@ -156,7 +156,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                      <children>
-                        <TextField fx:id="historyLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="historyLabel" editable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                </content>
