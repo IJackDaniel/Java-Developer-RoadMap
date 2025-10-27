@@ -35,6 +35,10 @@ public class CalculatorModel {
     }
 
     public void evaluate() {
+        double saveAccumulator = this.accumulator;
+        double saveCurrent = this.current;
+        String currentOperation = this.operation;
+
         if (this.operation.isEmpty()) return;
         switch (operation) {
             case "+":
@@ -51,14 +55,17 @@ public class CalculatorModel {
                 division();
                 break;
             case "xⁿ":
+                currentOperation = "^";
                 exponentiationOfN();
                 break;
             case "ⁿ√x":
                 if (currentIsZero()) throw new ArithmeticException("Корень нулевой степени!");
+                currentOperation = "root of degree";
                 rootOfDegreeN();
                 break;
         }
         shouldResetOnNextInput = true;
+        formOperationString(saveAccumulator, saveCurrent, currentOperation, this.current);
         addToHistory();
     }
 
@@ -68,76 +75,63 @@ public class CalculatorModel {
     }
 
     public void addition() {
-        this.lastOperation = this.accumulator + " + " + this.current;
-
         double result = round(this.accumulator + this.current);
         resetOperation();
         this.current = result;
-
-        this.lastOperation = this.lastOperation + " = " + this.current;
     }
 
     public void subtraction() {
-        this.lastOperation = this.accumulator + " - " + this.current;
-
         double result = round(this.accumulator - this.current);
         resetOperation();
         this.current = result;
-
-        this.lastOperation = this.lastOperation + " = " + this.current;
     }
 
     public void multiplication() {
-        this.lastOperation = this.accumulator + " * " + this.current;
-
         double result = round(this.accumulator * this.current);
         resetOperation();
         this.current = result;
-
-        this.lastOperation = this.lastOperation + " = " + this.current;
     }
 
     public void division() {
-        this.lastOperation = this.accumulator + " / " + this.current;
-
         double result = round(this.accumulator / this.current);
         resetOperation();
         this.current = result;
-
-        this.lastOperation = this.lastOperation + " = " + this.current;
     }
 
     public void exponentiationOfN() {
-        this.lastOperation = this.accumulator + " ^ " + this.current;
-
         double result = round(Math.pow(this.accumulator, this.current));
         resetOperation();
         this.current = result;
-
-        this.lastOperation = this.lastOperation + " = " + this.current;
     }
 
     public void rootOfDegreeN() {
-        this.lastOperation = this.accumulator + " root of degree " + this.current;
+        if (currentIsZero()) throw new ArithmeticException("Корень нулевой степени!");
+        if (this.accumulator < 0 && this.current % 2 == 0)
+            throw new ArithmeticException("Корень четной степени из отрицательного числа!");
 
-        double result = round(Math.pow(this.accumulator, 1/this.current));
+        double result = round(Math.pow(this.accumulator, 1.0/this.current));
         resetOperation();
         this.current = result;
-
-        this.lastOperation = this.lastOperation + " = " + this.current;
     }
 
     public void inverse() {
         double result = round(1/this.current);
-        this.lastOperation = "reverse " + this.current + " = ";
         resetOperation();
+        formOperationString(this.current, "reverse", result);
         this.current = result;
-        this.lastOperation = this.lastOperation + this.current;
         addToHistory();
     }
 
     private boolean currentIsZero(){
-        return this.current == 0.0;
+        return Math.abs(this.current) < 1e-10;
+    }
+
+    private void formOperationString(double num1, double num2, String currentOperation, double result) {
+        this.lastOperation = num1 + " " + currentOperation + " " + num2 + " = " + result;
+    }
+
+    private void formOperationString(double num1, String currentOperation, double result) {
+        this.lastOperation = num1 + " " + currentOperation + " = " + result;
     }
 
     // Getters
@@ -166,7 +160,7 @@ public class CalculatorModel {
     }
 
     public void inputOperation(String operation) {
-        if (!operation.isEmpty()) evaluate();
+        if (!operation.isEmpty() && !shouldResetOnNextInput) evaluate();
         if (shouldResetOnNextInput) shouldResetOnNextInput = false;
         this.operation = operation;
         shiftValue();
