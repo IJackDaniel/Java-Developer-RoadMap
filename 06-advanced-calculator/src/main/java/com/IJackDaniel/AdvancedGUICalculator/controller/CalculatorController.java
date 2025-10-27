@@ -69,8 +69,12 @@ public class CalculatorController {
 
     @FXML
     public void onEqualsClick() {
-        model.evaluate();
-        updateDisplay();
+        try {
+            model.evaluate();
+            updateDisplay();
+        } catch (ArithmeticException exception) {
+            resultLabel.setText(exception.getMessage());
+        }
     }
 
     private void updateDisplay() {

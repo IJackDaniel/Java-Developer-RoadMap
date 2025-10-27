@@ -41,13 +41,14 @@ public class CalculatorModel {
                 multiplication();
                 break;
             case "/":
-                if (divisionByZero()) throw new ArithmeticException("Деление на ноль!");
+                if (currentIsZero()) throw new ArithmeticException("Деление на ноль!");
                 division();
                 break;
             case "xⁿ":
                 exponentiationOfN();
                 break;
             case "ⁿ√x":
+                if (currentIsZero()) throw new ArithmeticException("Корень нулевой степени!");
                 rootOfDegreeN();
                 break;
         }
@@ -101,7 +102,7 @@ public class CalculatorModel {
         this.current = result;
     }
 
-    private boolean divisionByZero(){
+    private boolean currentIsZero(){
         return this.current == 0.0;
     }
 
