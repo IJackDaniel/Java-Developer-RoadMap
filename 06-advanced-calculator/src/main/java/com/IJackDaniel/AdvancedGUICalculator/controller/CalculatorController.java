@@ -4,14 +4,19 @@ import com.IJackDaniel.AdvancedGUICalculator.model.CalculatorModel;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
+
+import java.util.List;
 
 public class CalculatorController {
     CalculatorModel model;
 
     @FXML
-    TextField resultLabel, historyLabel;
+    TextField resultLabel;
+    @FXML
+    TextArea historyArea;
 
     @FXML
     Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button0;
@@ -84,6 +89,12 @@ public class CalculatorController {
         } else {
             resultLabel.setText(String.valueOf(showDigit));
         }
-
+        List<String> historyOfOperations = model.getHistoryOfOperations();
+        historyArea.clear();
+        StringBuilder historyString = new StringBuilder();
+        for (String operation : historyOfOperations) {
+            historyString.append(operation).append("\n");
+        }
+        historyArea.setText(historyString.toString());
     }
 }
