@@ -4,7 +4,7 @@
 
   <groupId>com.IJackDaniel</groupId>
   <artifactId>06-advanced-calculator</artifactId>
-  <version>0.0.1</version>
+  <version>1.0.0</version>
   <packaging>jar</packaging>
 
   <name>06-advanced-calculator</name>

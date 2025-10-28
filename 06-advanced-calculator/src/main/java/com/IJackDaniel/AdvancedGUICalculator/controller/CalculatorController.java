@@ -62,11 +62,6 @@ public class CalculatorController {
     }
 
     @FXML
-    public void onCommaClick() {
-        updateDisplay();
-    }
-
-    @FXML
     public void onClearClick() {
         model.reset();
         updateDisplay();
@@ -79,6 +74,10 @@ public class CalculatorController {
             updateDisplay();
         } catch (ArithmeticException exception) {
             resultLabel.setText(exception.getMessage());
+            model.reset();
+        } catch (Exception exception) {
+            resultLabel.setText("Ошибка вычислений!");
+            model.reset();
         }
     }
 
@@ -89,12 +88,8 @@ public class CalculatorController {
         } else {
             resultLabel.setText(String.valueOf(showDigit));
         }
-        List<String> historyOfOperations = model.getHistoryOfOperations();
+
         historyArea.clear();
-        StringBuilder historyString = new StringBuilder();
-        for (String operation : historyOfOperations) {
-            historyString.append(operation).append("\n");
-        }
-        historyArea.setText(historyString.toString());
+        historyArea.setText(model.getFormattedHistory());
     }
 }

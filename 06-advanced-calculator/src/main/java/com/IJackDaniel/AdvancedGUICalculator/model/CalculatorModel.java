@@ -8,7 +8,8 @@ public class CalculatorModel {
     private double current;
     private String operation;
     private String lastOperation;
-    private final int accuracy = 5;
+    private static final int DEFAULT_ACCURACY = 5;
+    private static final double EPSILON = 1e-10;
     private boolean shouldResetOnNextInput;
     private List<String> historyOfOperations;
 
@@ -123,7 +124,7 @@ public class CalculatorModel {
     }
 
     private boolean currentIsZero(){
-        return Math.abs(this.current) < 1e-10;
+        return Math.abs(this.current) < EPSILON;
     }
 
     private void formOperationString(double num1, double num2, String currentOperation, double result) {
@@ -136,15 +137,15 @@ public class CalculatorModel {
 
     // Getters
     public int getAccuracy() {
-        return this.accuracy;
+        return this.DEFAULT_ACCURACY;
     }
 
     public double getCurrent() {
         return this.current;
     }
 
-    public List<String> getHistoryOfOperations() {
-        return this.historyOfOperations;
+    public String getFormattedHistory() {
+        return String.join("\n", this.historyOfOperations);
     }
 
     // Inputs
