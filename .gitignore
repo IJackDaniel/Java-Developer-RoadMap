@@ -40,8 +40,6 @@ application-dev.properties
 application-prod.properties
 config.json
 
-# My notes
-NOTES.md
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -81,3 +79,6 @@ build/
 
 ### for project №4 ###
 04-task-manager-cli/data/
+
+# My notes
+NOTES.md
