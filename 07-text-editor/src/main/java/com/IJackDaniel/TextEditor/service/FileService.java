@@ -2,6 +2,7 @@ package com.IJackDaniel.TextEditor.service;
 
 import com.IJackDaniel.TextEditor.Exceptions.EmptyFilePath;
 import com.IJackDaniel.TextEditor.Exceptions.FileReadException;
+import com.IJackDaniel.TextEditor.Exceptions.FileWriteException;
 import com.IJackDaniel.TextEditor.model.TextDocument;
 
 import java.io.*;
@@ -32,12 +33,9 @@ public class FileService {
         }
 
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePath))) {
-            for (String string : text.split("\n")) {
-                bufferedWriter.write(string);
-                bufferedWriter.newLine();
-            }
+            bufferedWriter.write(text.replace("\n", System.lineSeparator()));
         } catch (IOException exception) {
-            throw new FileReadException("Ошибка при записи в файл: " + exception.getMessage());
+            throw new FileWriteException("Ошибка при записи в файл: " + exception.getMessage());
         }
     }
 }

@@ -6,7 +6,7 @@
 
   <groupId>com.IJackDaniel</groupId>
   <artifactId>TextEditor</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
   <name>07-text-editor</name>
 
   <properties>
