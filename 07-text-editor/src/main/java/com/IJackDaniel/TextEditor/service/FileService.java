@@ -9,7 +9,8 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 public class FileService {
-    public TextDocument readFile(String filePath) throws FileNotFoundException {
+    public static String readFile(File file) throws FileNotFoundException {
+        String filePath = file.getPath();
         if (filePath.isEmpty()) {
             throw new EmptyFilePath("Не указан путь к файлу");
         }
@@ -24,10 +25,10 @@ public class FileService {
         } catch (IOException exception) {
             throw new FileReadException("Ошибка при чтении файла: " + exception.getMessage());
         }
-        return new TextDocument(stringBuilder.toString());
+        return stringBuilder.toString();
     }
 
-    public void writeToFile(String filePath, String text) throws IOException {
+    public static void writeToFile(String filePath, String text) throws IOException {
         if (filePath.isEmpty()) {
             throw new EmptyFilePath("Не указан путь к файлу");
         }

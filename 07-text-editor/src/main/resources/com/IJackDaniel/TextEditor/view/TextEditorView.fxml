@@ -15,7 +15,7 @@
             <items>
               <MenuItem fx:id="openFile" mnemonicParsing="false" onAction="#onOpenClick" text="Открыть" />
                   <MenuItem mnemonicParsing="false" text="Закрыть" />
-                  <MenuItem mnemonicParsing="false" text="Сохранить" />
+                  <MenuItem fx:id="saveFile" mnemonicParsing="false" onAction="#onSaveClick" text="Сохранить" />
                   <MenuItem mnemonicParsing="false" text="Сохранить как ..." />
             </items>
           </Menu>
@@ -30,7 +30,7 @@
       <HBox prefHeight="100.0" prefWidth="1000.0" style="-fx-background-color: cyan;" />
       <HBox VBox.vgrow="ALWAYS">
          <children>
-            <TextArea fx:id="textField" prefWidth="1000.0" style="-fx-background-color: red;" text="Field For Text" />
+            <TextArea fx:id="textField" prefWidth="1000.0" style="-fx-background-color: red;" />
          </children>
       </HBox>
       <HBox prefHeight="40.0" prefWidth="1000.0" style="-fx-background-color: green;" />
