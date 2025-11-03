@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <VBox prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.IJackDaniel.TextEditor.controller.TextEditorController">
    <children>
       <MenuBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="300.0">
@@ -31,7 +30,7 @@
       <HBox prefHeight="100.0" prefWidth="1000.0" style="-fx-background-color: cyan;" />
       <HBox VBox.vgrow="ALWAYS">
          <children>
-            <TextArea prefWidth="1000.0" style="-fx-background-color: red;" text="Field For Text" />
+            <TextArea fx:id="textField" prefWidth="1000.0" style="-fx-background-color: red;" text="Field For Text" />
          </children>
       </HBox>
       <HBox prefHeight="40.0" prefWidth="1000.0" style="-fx-background-color: green;" />
