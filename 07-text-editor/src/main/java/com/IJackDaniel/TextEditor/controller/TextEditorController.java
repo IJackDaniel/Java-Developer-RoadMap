@@ -1,20 +1,27 @@
 package com.IJackDaniel.TextEditor.controller;
 
 import com.IJackDaniel.TextEditor.model.TextDocument;
+import com.IJackDaniel.TextEditor.service.FileService;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
-import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Optional;
 
 public class TextEditorController {
     TextDocument model;
+    FileService fileService;
 
     @FXML
     TextArea textField;
@@ -24,7 +31,8 @@ public class TextEditorController {
     @FXML
     public void initialize() {
         this.model = new TextDocument();
-        System.out.println("Контроллер инициализирован!");
+        this.fileService = new FileService();
+        setupStageListener();
     }
 
     @FXML
@@ -39,7 +47,7 @@ public class TextEditorController {
         File file = fileChooser.showOpenDialog(ownerWindow);
         if (file != null) {
             try {
-                model.setFile(file);
+                this.model.setProperties(this.fileService.readFile(file), file.getPath(), file.getName());
                 textField.setText(model.getText());
             } catch (Exception exception) {
                 System.out.println(exception.getMessage());
@@ -49,7 +57,69 @@ public class TextEditorController {
 
     @FXML
     public void onSaveClick(ActionEvent event) throws IOException {
-        model.updateText(textField.getText());
-        model.save();
+        if (!model.getPath().isEmpty()) {
+            model.updateText(textField.getText());
+            this.fileService.writeToFile(model.getPath(), model.getText());
+        }
+    }
+
+    public void setupStageListener() {
+        textField.sceneProperty().addListener((observable, oldScene, newScene) -> {
+            if (newScene != null) {
+                Window window = newScene.getWindow();
+
+                if (window != null) {
+                    setupCloseEventHandler((Stage) window);
+                } else {
+                    setupWindowListener(newScene);
+                }
+            }
+        });
+    }
+
+    private void setupWindowListener(Scene scene) {
+        scene.windowProperty().addListener((windowObs, oldWindow, newWindow) -> {
+            if (newWindow != null) {
+                setupCloseEventHandler((Stage) newWindow);
+            }
+        });
+    }
+
+    public void setupCloseEventHandler(Stage stage) {
+        stage.setOnCloseRequest(windowEvent -> {
+            if (hasUnsavedChanges()) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Сохранение изменений");
+                alert.setHeaderText("У вас есть несохраненные изменения");
+                alert.setContentText("Вы хотите сохранить изменения перед выходом?");
+
+                alert.getButtonTypes().setAll(
+                        ButtonType.YES,
+                        ButtonType.NO,
+                        ButtonType.CANCEL
+                );
+
+                Optional<ButtonType> result = alert.showAndWait();
+
+                if (result.isPresent()) {
+                    ButtonType buttonType = result.get();
+
+                    if (buttonType == ButtonType.YES) {
+                        try {
+                            model.updateText(textField.getText());
+                            this.fileService.writeToFile(model.getPath(), model.getText());
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    } else if (buttonType == ButtonType.CANCEL) {
+                        windowEvent.consume();
+                    }
+                }
+            }
+        });
+    }
+
+    private boolean hasUnsavedChanges() {
+        return !(model.getText()).equals(textField.getText());
     }
 }

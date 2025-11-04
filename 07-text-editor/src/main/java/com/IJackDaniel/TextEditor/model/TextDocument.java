@@ -1,11 +1,5 @@
 package com.IJackDaniel.TextEditor.model;
 
-import com.IJackDaniel.TextEditor.service.FileService;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 public class TextDocument {
     private String path;
     private String fileName;
@@ -17,10 +11,10 @@ public class TextDocument {
         this.fileName = "";
     }
 
-    public void setFile(File file) throws FileNotFoundException {
-        this.text = FileService.readFile(file);
-        this.path = file.getPath();
-        this.fileName = file.getName();
+    public void setProperties(String text, String path, String fileName) {
+        this.text = text;
+        this.path = path;
+        this.fileName = fileName;
 
     }
 
@@ -28,10 +22,7 @@ public class TextDocument {
         this.text = text;
     }
 
-    public void save() throws IOException {
-        FileService.writeToFile(this.path, this.text);
-    }
-
+    // Getters
     public String getText() {
         return this.text;
     }
