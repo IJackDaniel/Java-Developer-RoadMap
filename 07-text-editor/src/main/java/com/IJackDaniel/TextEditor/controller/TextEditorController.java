@@ -38,7 +38,9 @@ public class TextEditorController {
     public void onOpenClick(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Выбор файла");
-        fileChooser.setInitialDirectory(new File("C:/"));
+        //fileChooser.setInitialDirectory(new File("C:/"));
+        // Для удобства тестирования:
+        fileChooser.setInitialDirectory(new File("C:/Programming"));
         FileChooser.ExtensionFilter txtFilter = new FileChooser.ExtensionFilter("Текстовые файлы", "*.txt");
         fileChooser.getExtensionFilters().add(txtFilter);
 
@@ -91,12 +93,14 @@ public class TextEditorController {
                             throw new RuntimeException(e);
                         }
                     }
-                    if (buttonType != ButtonType.CANCEL) model.clear();
+                    if (buttonType != ButtonType.CANCEL) {
+                        model.clear();
+                        textField.setText(model.getText());
+                        updateAvailability();
+                    }
                 }
             }
         }
-        textField.setText(model.getText());
-        updateAvailability();
     }
 
     public void setupStageListener() {
