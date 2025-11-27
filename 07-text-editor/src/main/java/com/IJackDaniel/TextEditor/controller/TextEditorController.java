@@ -23,6 +23,10 @@ public class TextEditorController {
     TextArea textField;
     @FXML
     MenuItem openFile, saveFile;
+    @FXML
+    Button buttonBold, buttonItalic, buttonUnderline;
+    @FXML
+    Label labelCountOfCharacters;
 
     @FXML
     public void initialize() {
@@ -156,6 +160,21 @@ public class TextEditorController {
         });
     }
 
+    @FXML
+    public void makeBold(ActionEvent event) {
+        System.out.println("Bold");
+    }
+
+    @FXML
+    public void makeItalic(ActionEvent event) {
+        System.out.println("Italic");
+    }
+
+    @FXML
+    public void makeUnderline(ActionEvent event) {
+        System.out.println("Underline");
+    }
+
     private boolean hasUnsavedChanges() {
         return !(model.getText()).equals(textField.getText());
     }
@@ -165,7 +184,11 @@ public class TextEditorController {
     }
 
     private void updateAvailability() {
-        textField.setDisable(!doesFileOpen());
+        boolean isAvailable = !doesFileOpen();
+        textField.setDisable(isAvailable);
+        buttonBold.setDisable(isAvailable);
+        buttonItalic.setDisable(isAvailable);
+        buttonUnderline.setDisable(isAvailable);
     }
 
     private Alert createConfirmationAlert() {
