@@ -86,7 +86,7 @@ public class TextEditorController {
     public void onCloseClick(ActionEvent event) {
         if (doesFileOpen()) {
             if (hasUnsavedChanges()) {
-                Alert alert = createAlert();
+                Alert alert = createConfirmationAlert();
                 Optional<ButtonType> result = alert.showAndWait();
 
                 if (result.isPresent()) {
@@ -135,7 +135,7 @@ public class TextEditorController {
     public void setupCloseEventHandler(Stage stage) {
         stage.setOnCloseRequest(windowEvent -> {
             if (hasUnsavedChanges()) {
-                Alert alert = createAlert();
+                Alert alert = createConfirmationAlert();
                 Optional<ButtonType> result = alert.showAndWait();
 
                 if (result.isPresent()) {
@@ -168,7 +168,7 @@ public class TextEditorController {
         textField.setDisable(!doesFileOpen());
     }
 
-    private Alert createAlert() {
+    private Alert createConfirmationAlert() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Сохранение изменений");
         alert.setHeaderText("У вас есть несохраненные изменения");
@@ -179,6 +179,15 @@ public class TextEditorController {
                 ButtonType.NO,
                 ButtonType.CANCEL
         );
+
+        return alert;
+    }
+
+    private Alert createErrorAlert(String error) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Ошибка");
+        alert.setHeaderText("Ошибка расположения файла");
+        alert.setContentText(error);
 
         return alert;
     }
@@ -198,9 +207,17 @@ public class TextEditorController {
         inputNameDialog.showAndWait();
 
         String fileName = inputNameDialog.getEditor().getText();
-        if (directory != null && !fileName.isEmpty()) {
-            fileName = fileName + ".txt";
-            return directory.getPath() + "\\" + fileName;
+        if (directory != null) {
+            if (!fileName.isEmpty()) {
+                fileName = fileName + ".txt";
+                return directory.getPath() + "\\" + fileName;
+            } else {
+                Alert alert = createErrorAlert("Не указано имя файла");
+                alert.show();
+            }
+        } else {
+            Alert alert = createErrorAlert("Не указана директория");
+            alert.show();
         }
         return "";
     }
