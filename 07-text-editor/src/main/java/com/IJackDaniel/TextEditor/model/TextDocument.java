@@ -2,18 +2,15 @@ package com.IJackDaniel.TextEditor.model;
 
 public class TextDocument {
     private String path;
-    private String fileName;
     private String text;
 
     public TextDocument() {
         clear();
     }
 
-    public void setProperties(String text, String path, String fileName) {
+    public void setProperties(String text, String path) {
         this.text = text;
         this.path = path;
-        this.fileName = fileName;
-
     }
 
     public void updateText(String text) {
@@ -23,7 +20,6 @@ public class TextDocument {
     public void clear() {
         this.text = "";
         this.path = "";
-        this.fileName = "";
     }
 
     // Getters
@@ -33,9 +29,5 @@ public class TextDocument {
 
     public String getPath() {
         return this.path;
-    }
-
-    public String getFileName() {
-        return fileName;
     }
 }

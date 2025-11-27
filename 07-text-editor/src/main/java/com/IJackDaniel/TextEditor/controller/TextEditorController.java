@@ -5,10 +5,8 @@ import com.IJackDaniel.TextEditor.service.FileService;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -35,6 +33,16 @@ public class TextEditorController {
     }
 
     @FXML
+    public void onCreateClick(ActionEvent event) {
+        String filePath = createNewFilePath(event);
+        if (!filePath.isEmpty()) {
+            onCloseClick(event);
+            model.setProperties("", filePath);
+        }
+        updateAvailability();
+    }
+
+    @FXML
     public void onOpenClick(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Выбор файла");
@@ -48,7 +56,7 @@ public class TextEditorController {
         File file = fileChooser.showOpenDialog(ownerWindow);
         if (file != null) {
             try {
-                this.model.setProperties(this.fileService.readFile(file), file.getPath(), file.getName());
+                this.model.setProperties(this.fileService.readFile(file), file.getPath());
                 textField.setText(model.getText());
             } catch (Exception exception) {
                 System.out.println(exception.getMessage());
@@ -66,20 +74,19 @@ public class TextEditorController {
     }
 
     @FXML
+    public void onSaveAsClick(ActionEvent event) {
+        // Выбираем место и название файла (Будет схоже с функцией onCreateClick)
+
+        // Обновляем путь и название в модели
+
+        // Сохраняем (Думаю нужно создать отдельную функцию для сохранения, чтобы вызывать её тут и в onSaveClick)
+    }
+
+    @FXML
     public void onCloseClick(ActionEvent event) {
         if (doesFileOpen()) {
             if (hasUnsavedChanges()) {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Сохранение изменений");
-                alert.setHeaderText("У вас есть несохраненные изменения");
-                alert.setContentText("Вы хотите сохранить изменения перед закрытием файла?");
-
-                alert.getButtonTypes().setAll(
-                        ButtonType.YES,
-                        ButtonType.NO,
-                        ButtonType.CANCEL
-                );
-
+                Alert alert = createAlert();
                 Optional<ButtonType> result = alert.showAndWait();
 
                 if (result.isPresent()) {
@@ -128,17 +135,7 @@ public class TextEditorController {
     public void setupCloseEventHandler(Stage stage) {
         stage.setOnCloseRequest(windowEvent -> {
             if (hasUnsavedChanges()) {
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Сохранение изменений");
-                alert.setHeaderText("У вас есть несохраненные изменения");
-                alert.setContentText("Вы хотите сохранить изменения перед выходом?");
-
-                alert.getButtonTypes().setAll(
-                        ButtonType.YES,
-                        ButtonType.NO,
-                        ButtonType.CANCEL
-                );
-
+                Alert alert = createAlert();
                 Optional<ButtonType> result = alert.showAndWait();
 
                 if (result.isPresent()) {
@@ -169,5 +166,42 @@ public class TextEditorController {
 
     private void updateAvailability() {
         textField.setDisable(!doesFileOpen());
+    }
+
+    private Alert createAlert() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Сохранение изменений");
+        alert.setHeaderText("У вас есть несохраненные изменения");
+        alert.setContentText("Вы хотите сохранить изменения закрытием файла?");
+
+        alert.getButtonTypes().setAll(
+                ButtonType.YES,
+                ButtonType.NO,
+                ButtonType.CANCEL
+        );
+
+        return alert;
+    }
+
+    private String createNewFilePath(ActionEvent event) {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Выбор местоположения");
+        //directoryChooser.setInitialDirectory(new File("C:/"));
+        // Для удобства тестирования
+        directoryChooser.setInitialDirectory(new File("C:/Programming"));
+
+        Window ownerWindow = textField.getScene().getWindow();
+        File directory = directoryChooser.showDialog(ownerWindow);
+
+        TextInputDialog inputNameDialog = new TextInputDialog("Название файла");
+        inputNameDialog.setHeaderText("Введите название файла");
+        inputNameDialog.showAndWait();
+
+        String fileName = inputNameDialog.getEditor().getText();
+        if (directory != null && !fileName.isEmpty()) {
+            fileName = fileName + ".txt";
+            return directory.getPath() + "\\" + fileName;
+        }
+        return "";
     }
 }
