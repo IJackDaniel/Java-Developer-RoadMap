@@ -66,7 +66,7 @@
       </HBox>
       <HBox prefHeight="40.0" prefWidth="1000.0" style="-fx-border-color: black; -fx-border-width: 1;">
          <children>
-            <Label fx:id="labelCountOfCharacters" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="300.0" text="Всего символов: ">
+            <Label fx:id="labelCountOfCharacters" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="1000.0" text="Всего символов: ">
                <padding>
                   <Insets left="20.0" />
                </padding>

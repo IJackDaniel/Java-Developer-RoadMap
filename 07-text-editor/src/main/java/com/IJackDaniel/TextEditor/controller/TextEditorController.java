@@ -2,6 +2,7 @@ package com.IJackDaniel.TextEditor.controller;
 
 import com.IJackDaniel.TextEditor.model.TextDocument;
 import com.IJackDaniel.TextEditor.service.FileService;
+import com.IJackDaniel.TextEditor.service.TextStatisticService;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
@@ -32,6 +33,9 @@ public class TextEditorController {
     public void initialize() {
         this.model = new TextDocument();
         this.fileService = new FileService();
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            onTextChanged();
+        });
         updateAvailability();
         setupStageListener();
     }
@@ -189,6 +193,7 @@ public class TextEditorController {
         buttonBold.setDisable(isAvailable);
         buttonItalic.setDisable(isAvailable);
         buttonUnderline.setDisable(isAvailable);
+        labelCountOfCharacters.setVisible(!isAvailable);
     }
 
     private Alert createConfirmationAlert() {
@@ -249,5 +254,15 @@ public class TextEditorController {
         model.clear();
         textField.setText(model.getText());
         updateAvailability();
+    }
+
+    private void onTextChanged() {
+        int countOfSymbolsWithSpaces = TextStatisticService.countOfSymbolsWithSpaces(textField.getText());
+        int countOfSymbolsWithoutSpaces = TextStatisticService.countOfSymbolsWithoutSpaces(textField.getText());
+        int countOfWords = TextStatisticService.countOfWords(textField.getText());
+        String resultText = "Количество символов: " + countOfSymbolsWithSpaces +
+                "; Без пробелов: " + countOfSymbolsWithoutSpaces +
+                "; Количество слов: " + countOfWords;
+        labelCountOfCharacters.setText(resultText);
     }
 }
