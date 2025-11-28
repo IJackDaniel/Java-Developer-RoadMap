@@ -52,7 +52,7 @@ public class TextEditorController {
         fileChooser.setTitle("Выбор файла");
         //fileChooser.setInitialDirectory(new File("C:/"));
         // Для удобства тестирования:
-        fileChooser.setInitialDirectory(new File("C:/Programming"));
+        fileChooser.setInitialDirectory(new File("C:/Programming/..TestsForTextEditor"));
         FileChooser.ExtensionFilter txtFilter = new FileChooser.ExtensionFilter("Текстовые файлы", "*.txt");
         fileChooser.getExtensionFilters().add(txtFilter);
 
@@ -78,12 +78,12 @@ public class TextEditorController {
     }
 
     @FXML
-    public void onSaveAsClick(ActionEvent event) {
-        // Выбираем место и название файла (Будет схоже с функцией onCreateClick)
-
-        // Обновляем путь и название в модели
-
-        // Сохраняем (Думаю нужно создать отдельную функцию для сохранения, чтобы вызывать её тут и в onSaveClick)
+    public void onSaveAsClick(ActionEvent event) throws IOException {
+        String filePath = createNewFilePath(event);
+        if (!filePath.isEmpty()) {
+            model.setProperties(textField.getText(), filePath);
+            this.fileService.writeToFile(model.getPath(), model.getText());
+        }
     }
 
     @FXML
@@ -105,11 +105,11 @@ public class TextEditorController {
                         }
                     }
                     if (buttonType != ButtonType.CANCEL) {
-                        model.clear();
-                        textField.setText(model.getText());
-                        updateAvailability();
+                        closeFile();
                     }
                 }
+            } else {
+                closeFile();
             }
         }
     }
@@ -220,7 +220,7 @@ public class TextEditorController {
         directoryChooser.setTitle("Выбор местоположения");
         //directoryChooser.setInitialDirectory(new File("C:/"));
         // Для удобства тестирования
-        directoryChooser.setInitialDirectory(new File("C:/Programming"));
+        directoryChooser.setInitialDirectory(new File("C:/Programming/..TestsForTextEditor"));
 
         Window ownerWindow = textField.getScene().getWindow();
         File directory = directoryChooser.showDialog(ownerWindow);
@@ -243,5 +243,11 @@ public class TextEditorController {
             alert.show();
         }
         return "";
+    }
+
+    private void closeFile() {
+        model.clear();
+        textField.setText(model.getText());
+        updateAvailability();
     }
 }

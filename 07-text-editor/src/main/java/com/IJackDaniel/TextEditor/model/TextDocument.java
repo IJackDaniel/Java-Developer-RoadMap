@@ -17,6 +17,10 @@ public class TextDocument {
         this.text = text;
     }
 
+    public void setPath(String path) {
+        this.path = path;
+    }
+
     public void clear() {
         this.text = "";
         this.path = "";
