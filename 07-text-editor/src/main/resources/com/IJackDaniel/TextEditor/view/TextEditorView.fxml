@@ -44,11 +44,6 @@
                   <Font name="System Italic" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="buttonUnderline" mnemonicParsing="false" onAction="#makeUnderline" prefHeight="60.0" prefWidth="60.0" style="-fx-underline: true;" text="Кк">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
          </children>
          <opaqueInsets>
             <Insets left="20.0" right="20.0" />

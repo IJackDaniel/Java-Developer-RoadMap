@@ -3,6 +3,9 @@ package com.IJackDaniel.TextEditor.model;
 public class TextDocument {
     private String path;
     private String text;
+    private boolean isBold;
+    private boolean isItalic;
+    private boolean isUnderline;
 
     public TextDocument() {
         clear();
@@ -24,6 +27,17 @@ public class TextDocument {
     public void clear() {
         this.text = "";
         this.path = "";
+        this.isBold = false;
+        this.isItalic = false;
+        this.isUnderline = false;
+    }
+
+    public void changeBold() {
+        this.isBold = !this.isBold;
+    }
+
+    public void changeItalic() {
+        this.isItalic = !this.isItalic;
     }
 
     // Getters
@@ -33,5 +47,13 @@ public class TextDocument {
 
     public String getPath() {
         return this.path;
+    }
+
+    public boolean isBold() {
+        return isBold;
+    }
+
+    public boolean isItalic() {
+        return isItalic;
     }
 }

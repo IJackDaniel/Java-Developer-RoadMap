@@ -23,9 +23,7 @@ public class TextEditorController {
     @FXML
     TextArea textField;
     @FXML
-    MenuItem openFile, saveFile;
-    @FXML
-    Button buttonBold, buttonItalic, buttonUnderline;
+    Button buttonBold, buttonItalic;
     @FXML
     Label labelCountOfCharacters;
 
@@ -37,7 +35,7 @@ public class TextEditorController {
             onTextChanged();
         });
         onTextChanged();
-        updateAvailability();
+        update();
         setupStageListener();
     }
 
@@ -48,7 +46,7 @@ public class TextEditorController {
             onCloseClick(event);
             model.setProperties("", filePath);
         }
-        updateAvailability();
+        update();
     }
 
     @FXML
@@ -71,7 +69,7 @@ public class TextEditorController {
                 System.out.println(exception.getMessage());
             }
         }
-        updateAvailability();
+        update();
     }
 
     @FXML
@@ -167,17 +165,14 @@ public class TextEditorController {
 
     @FXML
     public void makeBold(ActionEvent event) {
-        System.out.println("Bold");
+        model.changeBold();
+        update();
     }
 
     @FXML
     public void makeItalic(ActionEvent event) {
-        System.out.println("Italic");
-    }
-
-    @FXML
-    public void makeUnderline(ActionEvent event) {
-        System.out.println("Underline");
+        model.changeItalic();
+        update();
     }
 
     private boolean hasUnsavedChanges() {
@@ -188,13 +183,16 @@ public class TextEditorController {
         return !model.getPath().isEmpty();
     }
 
-    private void updateAvailability() {
+    private void update() {
         boolean isAvailable = !doesFileOpen();
         textField.setDisable(isAvailable);
         buttonBold.setDisable(isAvailable);
         buttonItalic.setDisable(isAvailable);
-        buttonUnderline.setDisable(isAvailable);
         labelCountOfCharacters.setVisible(!isAvailable);
+        String style = "";
+        if (model.isBold()) style = style + "-fx-font-weight: bold;";
+        if (model.isItalic()) style = style + "-fx-font-style: italic;";
+        textField.setStyle(style);
     }
 
     private Alert createConfirmationAlert() {
@@ -254,7 +252,7 @@ public class TextEditorController {
     private void closeFile() {
         model.clear();
         textField.setText(model.getText());
-        updateAvailability();
+        update();
     }
 
     private void onTextChanged() {
