@@ -10,6 +10,8 @@ public class TextStatisticService {
     }
 
     public static int countOfWords(String text) {
+        if (text.isEmpty()) return 0;
+
         text = text.trim();
         while (text.contains("  ")) {
             text = text.replace("  ", " ");

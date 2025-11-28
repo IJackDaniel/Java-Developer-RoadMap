@@ -36,6 +36,7 @@ public class TextEditorController {
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
             onTextChanged();
         });
+        onTextChanged();
         updateAvailability();
         setupStageListener();
     }
