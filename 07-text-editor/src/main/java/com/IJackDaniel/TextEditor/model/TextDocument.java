@@ -5,7 +5,6 @@ public class TextDocument {
     private String text;
     private boolean isBold;
     private boolean isItalic;
-    private boolean isUnderline;
 
     public TextDocument() {
         clear();
@@ -29,7 +28,6 @@ public class TextDocument {
         this.path = "";
         this.isBold = false;
         this.isItalic = false;
-        this.isUnderline = false;
     }
 
     public void changeBold() {
